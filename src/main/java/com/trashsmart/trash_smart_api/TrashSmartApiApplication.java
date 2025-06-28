@@ -10,4 +10,6 @@ public class TrashSmartApiApplication {
         SpringApplication.run(TrashSmartApiApplication.class, args);
     }
 
+
+
 }
