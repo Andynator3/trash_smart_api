@@ -1,19 +1,29 @@
-//package com.trashsmart.trash_smart_api.initialization;
+/*package com.trashsmart.trash_smart_api.initialization;
 
-//import com.trashsmart.trash_smart_api.entities.AppRole;
-//import com.trashsmart.trash_smart_api.entities.AppUser;
-//import com.trashsmart.trash_smart_api.services.AccountService;
-//import jakarta.annotation.PostConstruct;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Component;
+import com.trashsmart.trash_smart_api.security.entities.AppRole;
+import com.trashsmart.trash_smart_api.security.entities.AppUser;
+import com.trashsmart.trash_smart_api.security.services.AccountService;
+import jakarta.annotation.PostConstruct;
 
-//import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-//@Component
-//@RequiredArgsConstructor
+import java.util.Set;
+
+@Component
+@Data
+@NoArgsConstructor
+@Builder*/
 /*public class DataInitializer {
 
-    private final AccountService accountService;
+    private  AccountService accountService;
+
+    public DataInitializer(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @PostConstruct
     public void initData() {

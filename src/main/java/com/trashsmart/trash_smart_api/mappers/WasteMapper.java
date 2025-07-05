@@ -19,13 +19,13 @@ public class WasteMapper {
                 .weight(waste.getWeight())
                 .depositedAt(waste.getDepositedAt())
                 .type(waste.getType())
-                .trashBinId(waste.getTrashBin().getId())
+               .trashBinId(waste.getTrashBin().getId())
                 .build();
     }
 
     public Waste fromDTO(WasteDTO dto) {
-        TrashBin bin = trashBinRepository.findById(dto.getTrashBinId())
-                .orElseThrow(() -> new RuntimeException("Trash bin not found"));
+       TrashBin bin = trashBinRepository.findById(dto.getTrashBinId())
+               .orElseThrow(() -> new RuntimeException("Trash bin not found"));
         return Waste.builder()
                 .id(dto.getId())
                 .weight(dto.getWeight())

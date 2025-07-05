@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.entities;
+package com.trashsmart.trash_smart_api.security.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,5 +13,9 @@ public class AppRole {
     private Long id;
     private String roleName;
 
+   /* public AppRole(Long id, String roleName) {
+        this.id = id;
+        this.roleName = roleName;
+    }*/
 }
 

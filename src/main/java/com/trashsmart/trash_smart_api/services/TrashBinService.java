@@ -12,6 +12,5 @@ public interface TrashBinService {
     List<TrashBin> searchByName(String keyword);
     List<TrashBin> getFullTrashBins();
     List<TrashBin> getNearby(double lat, double lng, double maxDistanceKm);
-
 }
 

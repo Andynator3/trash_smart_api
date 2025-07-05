@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.web;
+/*package com.trashsmart.trash_smart_api.web;
 
 import com.trashsmart.trash_smart_api.entities.Waste;
 import com.trashsmart.trash_smart_api.services.WasteService;
@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/wastes")
-@RequiredArgsConstructor
-public class WasteController {
+@RequiredArgsConstructor*/
+/*public class WasteController {
 
     private final WasteService wasteService;
 
@@ -29,4 +29,4 @@ public class WasteController {
         return wasteService.getWastesByTrashBin(trashBinId);
     }
 }
-
+*/
