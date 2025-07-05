@@ -63,7 +63,5 @@ public class TrashBinController {
                 .map(trashBinMapper::toDTO)
                 .toList();
     }
-
-
 }
 

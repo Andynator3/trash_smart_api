@@ -59,8 +59,6 @@ public class TrashBinServiceImpl implements TrashBinService {
                 * Math.sin(dLon/2) * Math.sin(dLon/2);
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
-
-
 }
 
 

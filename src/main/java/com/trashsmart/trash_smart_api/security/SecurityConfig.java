@@ -1,6 +1,8 @@
 package com.trashsmart.trash_smart_api.security;
 
-import com.trashsmart.trash_smart_api.services.UserDetailsServiceImpl;
+
+import com.trashsmart.trash_smart_api.security.filters.JwtAuthFilter;
+import com.trashsmart.trash_smart_api.security.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
@@ -10,8 +12,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.*;
 import org.springframework.security.web.*;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
@@ -22,17 +22,29 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final UserDetailsServiceImpl userDetailsService;
 
-    @Bean
+   @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
+         http
+            // Désactiver CSRF (pour simplifier l'accès à H2)
+            .csrf(AbstractHttpConfigurer::disable)
+            // Nécessaire pour accéder à la console H2 (affichage dans un iframe)
+            .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
+            // Configurer la gestion stateless des sessions
+            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            // Définir les règles d'autorisation
+            .authorizeHttpRequests(auth -> auth
+                        // Autoriser l'accès à la console H2
+                        .requestMatchers("/h2-console/**").permitAll()
+                          // Autoriser l'accès aux endpoints  sans permissions
+                         // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**","swagger-ui.html").permitAll()
+                          // Autoriser les endpoints d'authentification
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
+
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .userDetailsService(userDetailsService)
-                .build();
+                .userDetailsService(userDetailsService);
+        return http.build();
     }
 
     @Bean
@@ -41,10 +53,11 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    @Bean
+
+   /* @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 }
 
 

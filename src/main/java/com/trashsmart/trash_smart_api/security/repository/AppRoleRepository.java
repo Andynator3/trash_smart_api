@@ -1,6 +1,6 @@
-package com.trashsmart.trash_smart_api.repositories;
+package com.trashsmart.trash_smart_api.security.repository;
 
-import com.trashsmart.trash_smart_api.entities.AppRole;
+import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AppRoleRepository extends JpaRepository<AppRole, Long> {

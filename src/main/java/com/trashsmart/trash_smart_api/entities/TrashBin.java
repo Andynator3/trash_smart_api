@@ -21,6 +21,7 @@ public class TrashBin {
     private String name;
     private double latitude;
     private double longitude;
+    @Column(name = "is_full")
     private boolean full;
     @OneToMany(mappedBy = "trashBin", cascade = CascadeType.ALL)
     private List<Waste> wastes = new ArrayList<>();
