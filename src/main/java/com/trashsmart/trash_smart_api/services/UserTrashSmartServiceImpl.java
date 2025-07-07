@@ -1,14 +1,30 @@
-/*package com.trashsmart.trash_smart_api.services;
+package com.trashsmart.trash_smart_api.services;
 
+public class UserTrashSmartServiceImpl implements UserTrashSmartService {
+  /*  @Override
+    public UserTrashSmartService seConnecter() {
+        return null;
+    }*/
 
-import lombok.RequiredArgsConstructor;
+   /* @Override
+    public UserTrashSmartService sincrire() {
+        return null;
+    }*/
 
-import org.springframework.stereotype.Service;
+   /* @Override
+    public void consulterPoubellesProches() {
 
-@Service
-@RequiredArgsConstructor*/
-/*public class UserServiceImpl implements UserService {
+    }*/
+   /* @Override
+    public void voirEtatPoubelle() {
 
+    }*/
+   /* @Override
+    public void signalerProbleme() {
 
+    }*/
+   /* @Override
+    public void visualiserStatistique() {
+
+    }*/
 }
-*/

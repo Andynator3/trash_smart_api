@@ -1,32 +1,38 @@
-/*package com.trashsmart.trash_smart_api.mappers;
+package com.trashsmart.trash_smart_api.mappers;
 
-import com.trashsmart.trash_smart_api.dtos.UserDTO;
-import com.trashsmart.trash_smart_api.entities.User;
+
+import com.trashsmart.trash_smart_api.dtos.UserTrashSmartDTO;
+import com.trashsmart.trash_smart_api.entities.UserTrashSmart;
 import org.springframework.stereotype.Component;
 
 
-@Component*/
-/*public class UserMapper {
+@Component
+public class UserTrashSmartMapper {
 
-    public UserDTO toDTO(User user) {
-        return UserDTO.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .active(user.isActive())
+    public UserTrashSmartDTO toDTO(UserTrashSmart userTrashSmart) {
+        return UserTrashSmartDTO.builder()
+                .id(userTrashSmart.getId())
+                .firstName(userTrashSmart.getFirstName())
+                .lastName(userTrashSmart.getLastName())
+                .username(userTrashSmart.getUsername())
+                .email(userTrashSmart.getEmail())
+                .password(userTrashSmart.getPassword())
+                .phone(userTrashSmart.getPhone())
+                .active(userTrashSmart.isActive())
                 .build();
     }
 
-    public User fromDTO(UserDTO dto) {
-        return User.builder()
+    public UserTrashSmart fromDTO(UserTrashSmartDTO dto) {
+        return UserTrashSmart.builder()
                 .id(dto.getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
+                .username(dto.getUsername())
                 .email(dto.getEmail())
+                .password(dto.getPassword())
+                .phone(dto.getPhone())
                 .active(dto.isActive())
                 .build();
     }
 }
-*/
+

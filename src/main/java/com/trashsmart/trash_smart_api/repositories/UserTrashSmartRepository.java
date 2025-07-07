@@ -1,11 +1,11 @@
-/*package com.trashsmart.trash_smart_api.repositories;
+package com.trashsmart.trash_smart_api.repositories;
 
-import com.trashsmart.trash_smart_api.entities.User;
+
+import com.trashsmart.trash_smart_api.entities.UserTrashSmart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;*/
 
-/*public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
+public interface UserTrashSmartRepository extends JpaRepository<UserTrashSmart, Long> {
+   // UserTrashSmart findByEmail(String email);
 }
-*/
+

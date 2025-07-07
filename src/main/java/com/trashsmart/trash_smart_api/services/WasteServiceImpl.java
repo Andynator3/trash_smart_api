@@ -14,26 +14,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WasteServiceImpl implements WasteService {
 
-    private final WasteRepository wasteRepository;
-    private final TrashBinRepository trashBinRepository;
+  //  private final WasteRepository wasteRepository;
+  //  private final TrashBinRepository trashBinRepository;
 
-    @Override
+   /* @Override
     public Waste saveWaste(Waste waste, Long trashBinId) {
         TrashBin trashBin = trashBinRepository.findById(trashBinId)
                 .orElseThrow(() -> new RuntimeException("Trash bin not found"));
         waste.setTrashBin(trashBin);
         waste.setDepositedAt(LocalDateTime.now());
         return wasteRepository.save(waste);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public List<Waste> getAllWastes() {
         return wasteRepository.findAll();
-    }
+    }*/
 
-    @Override
+   /* @Override
     public List<Waste> getWastesByTrashBin(Long trashBinId) {
         return wasteRepository.findByTrashBinId(trashBinId);
-    }
+    }*/
 }
 

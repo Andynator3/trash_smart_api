@@ -16,9 +16,11 @@ import java.time.LocalDateTime;
 @Builder
 public class WasteDTO {
     private Long id;
+    private String description;
     private double weight;
     private LocalDateTime depositedAt;
     private WasteType type;
     private Long trashBinId;
+    private Long userTrashSmartId;
 }
 

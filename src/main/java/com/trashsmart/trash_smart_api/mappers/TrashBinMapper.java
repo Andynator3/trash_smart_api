@@ -10,20 +10,22 @@ public class TrashBinMapper {
     public TrashBinDTO toDTO(TrashBin bin) {
         return TrashBinDTO.builder()
                 .id(bin.getId())
-                .name(bin.getName())
+                .locationName(bin.getLocationName())
                 .latitude(bin.getLatitude())
                 .longitude(bin.getLongitude())
-                .full(bin.isFull())
+                .isFull(bin.isFull())
+                .isBlocked(bin.isBlocked())
                 .build();
     }
 
     public TrashBin fromDTO(TrashBinDTO dto) {
         return TrashBin.builder()
                 .id(dto.getId())
-                .name(dto.getName())
+                .locationName(dto.getLocationName())
                 .latitude(dto.getLatitude())
                 .longitude(dto.getLongitude())
-                .full(dto.isFull())
+                .isFull(dto.isFull())
+                .isBlocked(dto.isBlocked())
                 .build();
     }
 }

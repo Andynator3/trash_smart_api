@@ -28,10 +28,10 @@ public class WasteMapper {
                .orElseThrow(() -> new RuntimeException("Trash bin not found"));
         return Waste.builder()
                 .id(dto.getId())
+                .description(dto.getDescription())
                 .weight(dto.getWeight())
                 .depositedAt(dto.getDepositedAt())
                 .type(dto.getType())
-                .trashBin(bin)
                 .build();
     }
 }
