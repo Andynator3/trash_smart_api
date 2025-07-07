@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TrashBinRepository extends JpaRepository<TrashBin, Long> {
-    List<TrashBin> findByNameContainingIgnoreCase(String keyword);
-    List<TrashBin> findByFullTrue(); // Poubelles pleines uniquement
-    List<TrashBin> findByFull(boolean full);
+   // List<TrashBin> findByNameContainingIgnoreCase(String keyword);
+   // List<TrashBin> findByIsFull(boolean isFull);
+  //  TrashBin getTrashBinById(Long id);
+  //  List<TrashBin> findByIsBlocked(boolean isBlocked);
 }

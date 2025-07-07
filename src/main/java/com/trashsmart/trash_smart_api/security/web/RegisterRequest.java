@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.security.web;
+/*package com.trashsmart.trash_smart_api.security.web;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -11,4 +11,4 @@ public class RegisterRequest {
     private String password;
 
 }
-
+*/

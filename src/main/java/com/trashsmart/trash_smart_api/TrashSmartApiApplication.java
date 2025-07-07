@@ -21,14 +21,15 @@ public class TrashSmartApiApplication {
         SpringApplication.run(TrashSmartApiApplication.class, args);
     }
 
-     @Bean
+    /* @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     @Bean
     CommandLineRunner commandLineRunner( AccountAuthService accountAuthService) {
         return args -> {
+            System.out.println("TrashSmart API launched successfully!");
             // Création des roles
             accountAuthService.addRole(new AppRole(null, "USER"));
             accountAuthService.addRole(new AppRole(null, "ADMIN"));

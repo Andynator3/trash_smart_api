@@ -17,12 +17,11 @@ public class TrashBin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String name;
+    private String locationName;
     private double latitude;
     private double longitude;
-    @Column(name = "is_full")
-    private boolean full;
+    private boolean isFull;
+    private boolean isBlocked;
     @OneToMany(mappedBy = "trashBin", cascade = CascadeType.ALL)
     private List<Waste> wastes = new ArrayList<>();
 

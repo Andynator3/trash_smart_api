@@ -10,7 +10,6 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AppUser {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +22,7 @@ public class AppUser {
     private boolean enabled = true;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> roles=new ArrayList<>();
+    // private Set<AppRole> roles = new HashSet<>();
 
 }
 

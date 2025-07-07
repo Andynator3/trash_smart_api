@@ -16,7 +16,7 @@ public class Waste {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String description;
     private double weight;
 
     private LocalDateTime depositedAt;
@@ -25,7 +25,11 @@ public class Waste {
     private WasteType type;
 
     @ManyToOne
-    @JoinColumn(name = "trash_bin_id")
+    @JoinColumn(name = "trashBin")
     private TrashBin trashBin;
+
+    @ManyToOne
+    @JoinColumn(name = "userTrashSmart")
+    private UserTrashSmart userTrashSmart;
 }
 

@@ -1,6 +1,6 @@
 package com.trashsmart.trash_smart_api.security.filters;
 
-import com.trashsmart.trash_smart_api.security.services.UserDetailsServiceImpl;
+//import com.trashsmart.trash_smart_api.security.services.UserDetailsServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

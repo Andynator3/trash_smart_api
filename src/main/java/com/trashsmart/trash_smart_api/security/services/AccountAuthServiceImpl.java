@@ -4,33 +4,27 @@ import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
 import com.trashsmart.trash_smart_api.security.repository.AppRoleRepository;
 import com.trashsmart.trash_smart_api.security.repository.AppUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+//import java.util.List;
+
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AccountAuthServiceImpl implements AccountAuthService {
 
     private final AppUserRepository appUserRepository;
     private final AppRoleRepository appRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AccountAuthServiceImpl(AppUserRepository appUserRepository,
-                                  AppRoleRepository appRoleRepository,
-                                  PasswordEncoder passwordEncoder) {
-        this.appUserRepository = appUserRepository;
-        this.appRoleRepository = appRoleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
-    @Override
-    public AppUser getUserByUsername(String username) {
-        return appUserRepository.findByUsername(username);
-    }
+
     // Ajout d'un utilisateur avec mot de passe codé
     @Override
     public AppUser addUser(AppUser appUser) {
@@ -48,7 +42,20 @@ public class AccountAuthServiceImpl implements AccountAuthService {
         AppUser appUser = appUserRepository.findByUsername(username);
         AppRole appRole = appRoleRepository.findByRoleName(roleName);
         appUser.getRoles().add(appRole);
+        appUserRepository.save(appUser);
     }
+    /*@Override
+    public void removeRoleToUser(String username, String roleName) {
+        AppUser appUser = appUserRepository.findByUsername(username);
+        AppRole appRole = appRoleRepository.findByRoleName(roleName);
+        appUser.getRoles().remove(appRole);
+        appUserRepository.save(appUser);
+    }*/
+    @Override
+    public AppUser getUserByUsername(String username) {
+        return appUserRepository.findByUsername(username);
+    }
+
     @Override
     public List<AppUser> appUsersList() {
         return appUserRepository.findAll();
