@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.*;
-//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.*;
@@ -41,8 +40,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**","/h2-console/**").permitAll()
                           // Autoriser l'accès aux endpoints  sans permissions
                          // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**","swagger-ui.html").permitAll()
-                          // Autoriser les endpoints d'authentification
-                      // .requestMatchers("/api/auth/**").permitAll()
                        .anyRequest().authenticated())
             .userDetailsService(userDetailsServiceImpl)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

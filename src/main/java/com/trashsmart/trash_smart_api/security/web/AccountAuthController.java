@@ -1,15 +1,18 @@
 package com.trashsmart.trash_smart_api.security.web;
 
 
+import com.trashsmart.trash_smart_api.security.dtos.JwtResponse;
 import com.trashsmart.trash_smart_api.security.dtos.LoginRequest;
-import com.trashsmart.trash_smart_api.security.dtos.LoginResponse;
 import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
 import com.trashsmart.trash_smart_api.security.filters.JwtUtil;
 import com.trashsmart.trash_smart_api.security.services.AccountAuthService;
 import com.trashsmart.trash_smart_api.security.utils.RoleUserForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +25,8 @@ import java.util.List;
 
 public class AccountAuthController {
     private final AccountAuthService accountAuthService;
-    PasswordEncoder passwordEncoder;
-    JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public AppUser register(@RequestBody AppUser appUser){
@@ -45,8 +48,14 @@ public class AccountAuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Mot de passe incorrect");
         }
 
-        String token = jwtUtil.generateToken(appUser.getUsername());
-        return ResponseEntity.ok(new LoginResponse(token));
+        String token = jwtUtil.generateToken(
+                appUser.getUsername(),
+                appUser.getRoles().stream()
+                        .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getRoleName())).toList()
+        );
+
+        // String token = jwtUtil.generateToken(appUser.getUsername());
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 
 
