@@ -30,7 +30,6 @@ public class AccountAuthController {
 
     @PostMapping("/register")
     public AppUser register(@RequestBody AppUser appUser){
-       // System.out.println("Registering: " + appUser.getUsername());
         return accountAuthService.addUser(appUser);
     }
     @GetMapping("/user/{username}")
@@ -43,7 +42,6 @@ public class AccountAuthController {
         if (appUser == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utilisateur non trouvé");
         }
-
         if (!passwordEncoder.matches(loginRequest.getPassword(), appUser.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Mot de passe incorrect");
         }

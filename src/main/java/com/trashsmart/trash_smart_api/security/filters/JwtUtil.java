@@ -2,13 +2,14 @@ package com.trashsmart.trash_smart_api.security.filters;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import org.apache.catalina.Session;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.security.Key;
 
@@ -30,7 +31,8 @@ public class JwtUtil {
                 .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
-                .signWith(getKey())
+                .signWith(getKey(), SignatureAlgorithm.HS512)
+                //.signWith(getKey())
                 .claim("roles", roles.stream().map(GrantedAuthority::getAuthority).toList())
                 .compact();
     }
@@ -69,11 +71,19 @@ public class JwtUtil {
         }
     }
 
-
-
     private Key getKey() {
-        return Keys.hmacShaKeyFor(secret.getBytes());
+        return Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
     }
+
+
+    /* private Key getKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }*/
+    @PostConstruct
+    public void init() {
+        System.out.println("SECRET LENGTH = " + secret.length());
+    }
+
 }
 
 
