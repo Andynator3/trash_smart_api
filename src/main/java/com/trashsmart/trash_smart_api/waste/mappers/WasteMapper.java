@@ -1,9 +1,9 @@
 package com.trashsmart.trash_smart_api.waste.mappers;
 
 import com.trashsmart.trash_smart_api.waste.dtos.WasteDTO;
-import com.trashsmart.trash_smart_api.trashcan.entities.TrashBin;
+import com.trashsmart.trash_smart_api.trashcan.entities.Trashcan;
 import com.trashsmart.trash_smart_api.waste.entities.Waste;
-import com.trashsmart.trash_smart_api.trashcan.repositories.TrashBinRepository;
+import com.trashsmart.trash_smart_api.trashcan.repositories.TrashcanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class WasteMapper {
 
-    private final TrashBinRepository trashBinRepository;
+    private final TrashcanRepository trashBinRepository;
 
     public WasteDTO toDTO(Waste waste) {
         return WasteDTO.builder()
@@ -24,7 +24,7 @@ public class WasteMapper {
     }
 
     public Waste fromDTO(WasteDTO dto) {
-       TrashBin bin = trashBinRepository.findById(dto.getTrashBinId())
+       Trashcan bin = trashBinRepository.findById(dto.getTrashBinId())
                .orElseThrow(() -> new RuntimeException("Trash bin not found"));
         return Waste.builder()
                 .id(dto.getId())

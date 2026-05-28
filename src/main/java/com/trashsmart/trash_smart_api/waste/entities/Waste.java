@@ -1,7 +1,7 @@
 package com.trashsmart.trash_smart_api.waste.entities;
 
 import com.trashsmart.trash_smart_api.core.enums.WasteType;
-import com.trashsmart.trash_smart_api.trashcan.entities.TrashBin;
+import com.trashsmart.trash_smart_api.trashcan.entities.Trashcan;
 import com.trashsmart.trash_smart_api.trashcan.entities.UserTrashSmart;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,7 +28,7 @@ public class Waste {
 
     @ManyToOne
     @JoinColumn(name = "trashBin")
-    private TrashBin trashBin;
+    private Trashcan trashBin;
 
     @ManyToOne
     @JoinColumn(name = "userTrashSmart")
