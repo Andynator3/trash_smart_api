@@ -34,7 +34,7 @@ public class TrashSmartApiApplication {
             accountAuthService.addRole(new AppRole(null, "USER"));
             accountAuthService.addRole(new AppRole(null, "ADMIN"));
             accountAuthService.addRole(new AppRole(null, "TRASH-SMART_MANAGER"));
-            accountAuthService.addRole(new AppRole(null, "TRASH-BIN_MANAGER"));
+            accountAuthService.addRole(new AppRole(null, "TRASHCAN_MANAGER"));
             accountAuthService.addRole(new AppRole(null, "WASTE_MANAGER"));
             // Création des utilisateurs
             accountAuthService.addUser(new AppUser(null, "user1", "1230","user1@gmail.com",true, new ArrayList<>()));
@@ -50,7 +50,7 @@ public class TrashSmartApiApplication {
             accountAuthService.addRoleToUser("user2", "USER");
             accountAuthService.addRoleToUser("user2", "TRASH-SMART_MANAGER");
             accountAuthService.addRoleToUser("user3", "USER");
-            accountAuthService.addRoleToUser("user3", "TRASH-BIN_MANAGER");
+            accountAuthService.addRoleToUser("user3", "TRASHCAN_MANAGER");
             accountAuthService.addRoleToUser("user4", "USER");
             accountAuthService.addRoleToUser("user4", "WASTE_MANAGER");
 
