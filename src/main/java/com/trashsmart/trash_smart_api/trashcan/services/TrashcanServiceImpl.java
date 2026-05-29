@@ -24,6 +24,13 @@ public class TrashcanServiceImpl implements TrashcanService {
     }
 
     @Override
+    public TrashcanDto getTrashcanById(Long id) {
+        Trashcan trashcan = trashcanRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Poubelle introuvable avec l'ID : " + id));
+        return trashcanMapper.toDto(trashcan);
+    }
+
+    @Override
     public List<TrashcanDto> getAllTrashcans() {
         return trashcanRepository.findAll().stream()
                 .map(trashcanMapper::toDto)

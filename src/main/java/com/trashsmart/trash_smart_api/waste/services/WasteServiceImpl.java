@@ -34,29 +34,45 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
+    public WasteDto getWasteById(Long id) {
+        Waste waste = wasteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Déchet introuvable avec l'ID : " + id));
+        return wasteMapper.toDto(waste); // Adapte avec le nom de ta méthode de mapping
+    }
+    @Override
     public List<WasteDto> getAllWastes() {
         return wasteRepository.findAll().stream()
                 .map(wasteMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-   /* @Override
-    public Waste saveWaste(Waste waste, Long trashBinId) {
-        TrashBin trashBin = trashBinRepository.findById(trashBinId)
-                .orElseThrow(() -> new RuntimeException("Trash bin not found"));
-        waste.setTrashBin(trashBin);
-        waste.setDepositedAt(LocalDateTime.now());
-        return wasteRepository.save(waste);
-    }*/
+    @Override
+    public WasteDto updateWaste(Long id, WasteDto wasteDto) {
+        Waste existingWaste = wasteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Déchet introuvable avec l'ID : " + id));
 
-    /*@Override
-    public List<Waste> getAllWastes() {
-        return wasteRepository.findAll();
-    }*/
+        // Mise à jour des champs modifiables
+        existingWaste.setWasteType(wasteDto.getWasteType());
+        existingWaste.setWeight(wasteDto.getWeight());
+        existingWaste.setVolume(wasteDto.getVolume());
 
-   /* @Override
-    public List<Waste> getWastesByTrashBin(Long trashBinId) {
-        return wasteRepository.findByTrashBinId(trashBinId);
-    }*/
+        Waste updatedWaste = wasteRepository.save(existingWaste);
+        return wasteMapper.toDto(updatedWaste);
+    }
+
+    @Override
+    public void deleteWaste(Long id) {
+        if (!wasteRepository.existsById(id)) {
+            throw new RuntimeException("Déchet introuvable avec l'ID : " + id);
+        }
+        wasteRepository.deleteById(id);
+    }
+
+    @Override
+    public List<WasteDto> getWastesByTrashcanId(Long trashcanId) {
+        return wasteRepository.findByTrashcanId(trashcanId).stream()
+                .map(wasteMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }
 

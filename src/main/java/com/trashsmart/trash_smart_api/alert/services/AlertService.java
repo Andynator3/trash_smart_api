@@ -11,4 +11,6 @@ public interface AlertService {
     List<AlertDto> getAlertsBySeverity(AlertSeverity severity);
     AlertDto acknowledgeAlert(Long id);
     long getTotalAlertsCount();
+    AlertDto getAlertById(Long id);
+    void deleteAlert(Long id);
 }

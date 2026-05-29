@@ -58,4 +58,19 @@ public class AlertServiceImpl implements AlertService {
     public long getTotalAlertsCount() {
         return alertRepository.count();
     }
+
+    @Override
+    public AlertDto getAlertById(Long id) {
+        Alert alert = alertRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Alerte introuvable avec l'ID : " + id));
+        return alertMapper.toDto(alert); // Utilise ton mapper existant
+    }
+
+    @Override
+    public void deleteAlert(Long id) {
+        if (!alertRepository.existsById(id)) {
+            throw new RuntimeException("Alerte introuvable avec l'ID : " + id);
+        }
+        alertRepository.deleteById(id);
+    }
 }

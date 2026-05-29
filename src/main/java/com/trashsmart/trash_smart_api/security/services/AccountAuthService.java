@@ -1,5 +1,6 @@
 package com.trashsmart.trash_smart_api.security.services;
 
+import com.trashsmart.trash_smart_api.security.dtos.UpdateUserDto;
 import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
 
@@ -12,9 +13,10 @@ public interface AccountAuthService {
 
     AppRole addRole(AppRole appRole);
     void addRoleToUser(String username, String roleName);
-   // void removeRoleToUser(String username, String roleName);
     AppUser getUserByUsername(String username);
     List<AppUser> appUsersList();
     void deleteUserById(Long id);
+    AppUser updateUser(Long id, UpdateUserDto updateUserDto);
+    void changeUserStatus(Long id, boolean active);
 }
 

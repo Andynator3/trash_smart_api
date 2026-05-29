@@ -3,6 +3,7 @@ package com.trashsmart.trash_smart_api.trashcan.web;
 import com.trashsmart.trash_smart_api.trashcan.dtos.TrashcanDto;
 import com.trashsmart.trash_smart_api.trashcan.services.TrashcanService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -19,6 +20,11 @@ public class TrashcanController {
         return trashcanService.addTrashcan(trashcanDto);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TrashcanDto> getTrashcanById(@PathVariable Long id) {
+        TrashcanDto trashcanDto = trashcanService.getTrashcanById(id);
+        return ResponseEntity.ok(trashcanDto);
+    }
     @GetMapping
     public List<TrashcanDto> getAll() {
         return trashcanService.getAllTrashcans();

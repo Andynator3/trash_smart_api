@@ -4,6 +4,7 @@ import com.trashsmart.trash_smart_api.alert.dtos.AlertDto;
 import com.trashsmart.trash_smart_api.alert.services.AlertService;
 import com.trashsmart.trash_smart_api.core.enums.AlertSeverity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +38,16 @@ public class AlertController {
     @GetMapping("/count")
     public long getAlertsCount() {
         return alertService.getTotalAlertsCount();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AlertDto> getAlertById(@PathVariable Long id) {
+        return ResponseEntity.ok(alertService.getAlertById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAlert(@PathVariable Long id) {
+        alertService.deleteAlert(id);
+        return ResponseEntity.noContent().build(); // Retourne un standard 204 No Content
     }
 }
