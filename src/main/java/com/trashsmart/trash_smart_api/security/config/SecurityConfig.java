@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.security;
+package com.trashsmart.trash_smart_api.security.config;
 
 
 import com.trashsmart.trash_smart_api.security.filters.JwtAuthFilter;
@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.*;
@@ -15,10 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.*;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
@@ -36,10 +41,11 @@ public class SecurityConfig {
             // Définir les règles d'autorisation
             .authorizeHttpRequests(auth -> auth
                     //.anyRequest().permitAll());
-                        // Autoriser l'accès à la console H2
-                        .requestMatchers("/api/auth/**","/h2-console/**").permitAll()
+                        // Autoriser l'accès à la console H2 sans permissions
+                       .requestMatchers("/api/auth/**","/h2-console/**").permitAll()
                           // Autoriser l'accès aux endpoints  sans permissions
-                         // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**","swagger-ui.html").permitAll()
+                       .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                         // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**").permitAll()
                        .anyRequest().authenticated())
             .userDetailsService(userDetailsServiceImpl)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -56,6 +62,20 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        // Autoriser le vrai port du frontend : 8081 !
+        configuration.setAllowedOrigins(java.util.List.of("http://localhost:8081"));
+
+        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(java.util.List.of("*"));
+        configuration.setAllowCredentials(true); // Très important si vous utilisez des cookies/tokens
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
 

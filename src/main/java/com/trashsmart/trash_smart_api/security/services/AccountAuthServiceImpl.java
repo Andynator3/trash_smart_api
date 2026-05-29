@@ -1,5 +1,6 @@
 package com.trashsmart.trash_smart_api.security.services;
 
+import com.trashsmart.trash_smart_api.security.dtos.UpdateUserDto;
 import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
 import com.trashsmart.trash_smart_api.security.repositories.AppRoleRepository;
@@ -11,9 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-//import java.util.List;
-
 
 @Service
 @Transactional
@@ -73,6 +71,30 @@ public class AccountAuthServiceImpl implements AccountAuthService {
         appUserRepository.delete(appUser);
     }
 
+    @Override
+    public AppUser updateUser(Long id, UpdateUserDto updateUserDto) {
+        AppUser user = appUserRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable avec l'ID : " + id));
+
+        if (updateUserDto.getEmail() != null) {
+            user.setEmail(updateUserDto.getEmail());
+        }
+
+        if (updateUserDto.getPassword() != null && !updateUserDto.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(updateUserDto.getPassword()));
+        }
+
+        return appUserRepository.save(user);
+    }
+
+    @Override
+    public void changeUserStatus(Long id, boolean active) {
+        AppUser user = appUserRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable avec l'ID : " + id));
+
+        user.setEnabled(active);
+        appUserRepository.save(user);
+    }
      /*@Override
     public void removeRoleToUser(String username, String roleName) {
         AppUser appUser = appUserRepository.findByUsername(username);
