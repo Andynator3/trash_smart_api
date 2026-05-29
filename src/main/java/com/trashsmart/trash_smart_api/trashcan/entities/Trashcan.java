@@ -19,6 +19,8 @@ public class Trashcan {
     private double latitude;
     private double longitude;
     private boolean isFull;
+    private String locationName;
+    private int fillLevel;
     private boolean isBlocked;
 
     @OneToMany(mappedBy = "trashcan", cascade = CascadeType.ALL, orphanRemoval = true)

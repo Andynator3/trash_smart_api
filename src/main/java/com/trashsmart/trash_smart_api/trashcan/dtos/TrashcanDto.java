@@ -10,6 +10,8 @@ public class TrashcanDto {
     private double latitude;
     private double longitude;
     private boolean isFull;
+    private String locationName;
+    private int fillLevel;
     private boolean isBlocked;
 }
 

@@ -36,10 +36,11 @@ public class SecurityConfig {
             // Définir les règles d'autorisation
             .authorizeHttpRequests(auth -> auth
                     //.anyRequest().permitAll());
-                        // Autoriser l'accès à la console H2
-                        .requestMatchers("/api/auth/**","/h2-console/**").permitAll()
+                        // Autoriser l'accès à la console H2 sans permissions
+                       .requestMatchers("/api/auth/**","/h2-console/**").permitAll()
                           // Autoriser l'accès aux endpoints  sans permissions
-                         // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**","swagger-ui.html").permitAll()
+                       .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                         // .requestMatchers("/users/**","/users/id/**","/roles/**", "/addRoleToUser/**").permitAll()
                        .anyRequest().authenticated())
             .userDetailsService(userDetailsServiceImpl)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

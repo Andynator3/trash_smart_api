@@ -37,11 +37,11 @@ public class TrashSmartApiApplication {
             accountAuthService.addRole(new AppRole(null, "TRASHCAN_MANAGER"));
             accountAuthService.addRole(new AppRole(null, "WASTE_MANAGER"));
             // Création des utilisateurs
-            accountAuthService.addUser(new AppUser(null, "user1", "1230","user1@gmail.com",true, new ArrayList<>()));
-            accountAuthService.addUser(new AppUser(null, "admin", "1230","admin@gmail.com", true, new ArrayList<>()));
-            accountAuthService.addUser(new AppUser(null, "user2", "1230","user2@gmail.com", true,new ArrayList<>()));
-            accountAuthService.addUser(new AppUser(null, "user3", "1230","user3@gmail.com", true,new ArrayList<>()));
-            accountAuthService.addUser(new AppUser(null, "user4", "1230","user4@gmail.com", true,new ArrayList<>()));
+            accountAuthService.addUser(new AppUser(null, "user1", "user11230","user1@gmail.com",true, new ArrayList<>()));
+            accountAuthService.addUser(new AppUser(null, "admin", "admin1230","admin@gmail.com", true, new ArrayList<>()));
+            accountAuthService.addUser(new AppUser(null, "user2", "user21230","user2@gmail.com", true,new ArrayList<>()));
+            accountAuthService.addUser(new AppUser(null, "user3", "user31230","user3@gmail.com", true,new ArrayList<>()));
+            accountAuthService.addUser(new AppUser(null, "user4", "user41230","user4@gmail.com", true,new ArrayList<>()));
 
             // Ajout de role à un utilisateur
             accountAuthService.addRoleToUser("user1", "USER");

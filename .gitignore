@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# ==========================================
+# ENVIRONNEMENT & SECRETS GLOBAUX
+# ==========================================
+# Secrets (Le plus important !)
+.env
