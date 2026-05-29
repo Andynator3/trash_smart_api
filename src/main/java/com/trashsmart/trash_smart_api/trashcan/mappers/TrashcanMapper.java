@@ -17,6 +17,8 @@ public class TrashcanMapper {
                 .latitude(trashcan.getLatitude())
                 .longitude(trashcan.getLongitude())
                 .isFull(trashcan.isFull())
+                .locationName(trashcan.getLocationName())
+                .fillLevel(trashcan.getFillLevel())
                 .isBlocked(trashcan.isBlocked())
                 .build();
     }
@@ -31,6 +33,8 @@ public class TrashcanMapper {
                 .latitude(dto.getLatitude())
                 .longitude(dto.getLongitude())
                 .isFull(dto.isFull())
+                .locationName(dto.getLocationName())
+                .fillLevel(dto.getFillLevel())
                 .isBlocked(dto.isBlocked())
                 .build();
     }
