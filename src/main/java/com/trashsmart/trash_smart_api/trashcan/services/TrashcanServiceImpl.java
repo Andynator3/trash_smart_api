@@ -29,5 +29,28 @@ public class TrashcanServiceImpl implements TrashcanService {
                 .map(trashcanMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public TrashcanDto updateTrashcan(Long id, TrashcanDto trashcanDto) {
+        Trashcan existingTrashcan = trashcanRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Trashcan not found with id: " + id));
+
+        existingTrashcan.setReference(trashcanDto.getReference());
+        existingTrashcan.setLatitude(trashcanDto.getLatitude());
+        existingTrashcan.setLongitude(trashcanDto.getLongitude());
+        existingTrashcan.setFull(trashcanDto.isFull());
+        existingTrashcan.setBlocked(trashcanDto.isBlocked());
+
+        Trashcan updatedTrashcan = trashcanRepository.save(existingTrashcan);
+        return trashcanMapper.toDto(updatedTrashcan);
+    }
+    @Override
+    public void deleteTrashcan(Long id) {
+        if (!trashcanRepository.existsById(id)) {
+            throw new RuntimeException("Trashcan not found with id: " + id);
+        }
+        trashcanRepository.deleteById(id);
+    }
+
 }
 

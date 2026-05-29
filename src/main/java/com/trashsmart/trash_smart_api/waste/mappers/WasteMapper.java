@@ -1,15 +1,43 @@
 package com.trashsmart.trash_smart_api.waste.mappers;
 
-import com.trashsmart.trash_smart_api.waste.dtos.WasteDTO;
+
+
 import com.trashsmart.trash_smart_api.trashcan.entities.Trashcan;
+import com.trashsmart.trash_smart_api.waste.dtos.WasteDto;
 import com.trashsmart.trash_smart_api.waste.entities.Waste;
-import com.trashsmart.trash_smart_api.trashcan.repositories.TrashcanRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
-@RequiredArgsConstructor
 public class WasteMapper {
+
+    public WasteDto toDto(Waste waste) {
+        if (waste == null) return null;
+        return WasteDto.builder()
+                .id(waste.getId())
+                .wasteType(waste.getWasteType())
+                .weight(waste.getWeight())
+                .volume(waste.getVolume())
+                .depositDate(waste.getDepositDate())
+                .trashcanId(waste.getTrashcan() != null ? waste.getTrashcan().getId() : null)
+                .build();
+    }
+
+    public Waste toEntity(WasteDto dto, Trashcan trashcan) {
+        if (dto == null) return null;
+        return Waste.builder()
+                .id(dto.getId())
+                .wasteType(dto.getWasteType())
+                .weight(dto.getWeight())
+                .volume(dto.getVolume())
+                .depositDate(dto.getDepositDate() != null ? dto.getDepositDate() : LocalDateTime.now())
+                .trashcan(trashcan)
+                .build();
+    }
+}
+
+/*public class WasteMapper {
 
     private final TrashcanRepository trashBinRepository;
 
@@ -34,5 +62,5 @@ public class WasteMapper {
                 .type(dto.getType())
                 .build();
     }
-}
+}*/
 

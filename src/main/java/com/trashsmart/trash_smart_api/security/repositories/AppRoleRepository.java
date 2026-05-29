@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.security.repository;
+package com.trashsmart.trash_smart_api.security.repositories;
 
 import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;

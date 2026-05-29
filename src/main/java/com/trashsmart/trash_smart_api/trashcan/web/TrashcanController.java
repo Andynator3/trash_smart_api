@@ -22,4 +22,15 @@ public class TrashcanController {
     public List<TrashcanDto> getAll() {
         return trashcanService.getAllTrashcans();
     }
+
+    @PutMapping("/{id}")
+    public TrashcanDto updateTrashcan(@PathVariable Long id, @RequestBody TrashcanDto trashcanDto) {
+        return trashcanService.updateTrashcan(id, trashcanDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTrashcan(@PathVariable Long id) {
+        trashcanService.deleteTrashcan(id);
+    }
+
 }
