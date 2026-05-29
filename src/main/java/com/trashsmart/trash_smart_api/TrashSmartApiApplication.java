@@ -26,7 +26,7 @@ public class TrashSmartApiApplication {
         return new BCryptPasswordEncoder();
     }*/
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner( AccountAuthService accountAuthService) {
         return args -> {
             System.out.println("TrashSmart API launched successfully!");

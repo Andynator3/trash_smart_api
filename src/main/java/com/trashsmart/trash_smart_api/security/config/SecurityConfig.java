@@ -1,4 +1,4 @@
-package com.trashsmart.trash_smart_api.security;
+package com.trashsmart.trash_smart_api.security.config;
 
 
 import com.trashsmart.trash_smart_api.security.filters.JwtAuthFilter;

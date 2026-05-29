@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/trashcans")
 @RequiredArgsConstructor
+@io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "Bearer Authentication")
 public class TrashcanController {
 
     private final TrashcanService trashcanService;

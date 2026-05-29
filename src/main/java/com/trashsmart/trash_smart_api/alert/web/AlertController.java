@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/alerts")
 @RequiredArgsConstructor
+@io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "Bearer Authentication")
 public class AlertController {
 
     private final AlertService alertService;
