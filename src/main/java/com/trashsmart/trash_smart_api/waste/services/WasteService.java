@@ -1,8 +1,11 @@
 package com.trashsmart.trash_smart_api.waste.services;
 
+import com.trashsmart.trash_smart_api.waste.dtos.WasteDto;
+
+import java.util.List;
+
 public interface WasteService {
-   // Waste saveWaste(Waste waste, Long trashBinId);
-   // List<Waste> getAllWastes();
-   // List<Waste> getWastesByTrashBin(Long trashBinId);
+    WasteDto addWaste(WasteDto wasteDto);
+    List<WasteDto> getAllWastes();
 }
 

@@ -73,7 +73,10 @@ public class AccountAuthController {
     public void assignRoleToUser(@RequestBody RoleUserForm roleUserForm){
         accountAuthService.addRoleToUser(roleUserForm.getUsername(),roleUserForm.getRoleName());
     }
-
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        accountAuthService.deleteUserById(id);
+    }
 
 
 }

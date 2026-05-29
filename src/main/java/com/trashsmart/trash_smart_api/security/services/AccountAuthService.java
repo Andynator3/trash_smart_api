@@ -15,5 +15,6 @@ public interface AccountAuthService {
    // void removeRoleToUser(String username, String roleName);
     AppUser getUserByUsername(String username);
     List<AppUser> appUsersList();
+    void deleteUserById(Long id);
 }
 

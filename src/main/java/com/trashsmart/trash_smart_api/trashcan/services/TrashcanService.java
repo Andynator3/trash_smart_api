@@ -8,6 +8,10 @@ package com.trashsmart.trash_smart_api.trashcan.services;
 public interface TrashcanService {
     TrashcanDto addTrashcan(TrashcanDto trashcanDto);
     List<TrashcanDto> getAllTrashcans();
+    TrashcanDto updateTrashcan(Long id, TrashcanDto trashcanDto);
+
+    void deleteTrashcan(Long id);
+
 }
 
 
