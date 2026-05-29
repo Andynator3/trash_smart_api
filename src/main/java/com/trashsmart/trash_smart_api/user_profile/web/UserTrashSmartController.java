@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/profiles")
 @RequiredArgsConstructor
+@io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "Bearer Authentication")
 public class UserTrashSmartController {
 
     private final UserTrashSmartService userTrashSmartService;

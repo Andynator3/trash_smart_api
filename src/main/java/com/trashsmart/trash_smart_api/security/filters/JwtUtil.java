@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.security.Key;
 
@@ -17,10 +16,10 @@ import java.security.Key;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
+    @Value("${app.jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration}")
+    @Value("${app.jwt.expiration}")
     private long expirationMs;
 
     public String generateToken(String username, Collection<? extends GrantedAuthority> roles) {

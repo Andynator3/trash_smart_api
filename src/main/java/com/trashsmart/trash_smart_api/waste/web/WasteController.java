@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/wastes")
 @RequiredArgsConstructor
+@io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "Bearer Authentication")
 public class WasteController {
 
     private final WasteService wasteService;
