@@ -1,7 +1,7 @@
 package com.trashsmart.trash_smart_api.security.services;
 
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
-import com.trashsmart.trash_smart_api.security.repository.AppUserRepository;
+import com.trashsmart.trash_smart_api.security.repositories.AppUserRepository;
 import lombok.AllArgsConstructor;
 //import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
