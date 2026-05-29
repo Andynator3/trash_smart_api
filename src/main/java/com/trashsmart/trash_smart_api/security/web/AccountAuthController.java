@@ -4,6 +4,7 @@ package com.trashsmart.trash_smart_api.security.web;
 import com.trashsmart.trash_smart_api.security.dtos.JwtResponse;
 import com.trashsmart.trash_smart_api.security.dtos.LoginRequest;
 import com.trashsmart.trash_smart_api.security.dtos.RegisterRequest;
+import com.trashsmart.trash_smart_api.security.dtos.UpdateUserDto;
 import com.trashsmart.trash_smart_api.security.entities.AppRole;
 import com.trashsmart.trash_smart_api.security.entities.AppUser;
 import com.trashsmart.trash_smart_api.security.filters.JwtUtil;
@@ -12,6 +13,7 @@ import com.trashsmart.trash_smart_api.security.utils.RoleUserForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -100,6 +102,16 @@ public class AccountAuthController {
         accountAuthService.deleteUserById(id);
     }
 
+    @PutMapping("/users/{id}")
+    public ResponseEntity<AppUser> updateUser(@PathVariable Long id, @RequestBody UpdateUserDto updateUserDto) {
+        return ResponseEntity.ok(accountAuthService.updateUser(id, updateUserDto));
+    }
 
+     @PreAuthorize("hasAuthority('ADMIN')")
+    @PatchMapping("/users/{id}/status")
+    public ResponseEntity<Void> changeUserStatus(@PathVariable Long id, @RequestParam boolean active) {
+        accountAuthService.changeUserStatus(id, active);
+        return ResponseEntity.noContent().build();
+    }
 }
 
